@@ -17,7 +17,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document, {
-    customCss: (await fs.readFile(join(GetEnv("NODE_ENV") == "production" ? "../" : "", "src", "swagger", GetEnv("THEME_SWAGGER")))).toString()
+    customCss: (await fs.readFile(join(GetEnv("NODE_ENV") == "production" ? "../src" : "src", "swagger", GetEnv("THEME_SWAGGER")))).toString()
   });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(GetEnv("PORT"));
