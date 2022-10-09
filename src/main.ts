@@ -16,9 +16,9 @@ async function bootstrap() {
     .addBasicAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  console.log(join(GetEnv("NODE_ENV") == "production" ? "../src" : "src", "swagger", GetEnv("THEME_SWAGGER")));
+  console.log(join(__dirname, GetEnv("NODE_ENV") == "production" ? "../src" : "src", "swagger", GetEnv("THEME_SWAGGER")));
   SwaggerModule.setup("api", app, document, {
-    customCss: (await fs.readFile(join(GetEnv("NODE_ENV") == "production" ? "../src" : "src", "swagger", GetEnv("THEME_SWAGGER")))).toString()
+    customCss: (await fs.readFile(join(__dirname, GetEnv("NODE_ENV") == "production" ? "../src" : "src", "swagger", GetEnv("THEME_SWAGGER")))).toString()
   });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(GetEnv("PORT"));
