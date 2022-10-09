@@ -1,7 +1,10 @@
-import { Column, CreatedAt, DeletedAt, Model, UpdatedAt } from "sequelize-typescript";
+import { AutoIncrement, Column, CreatedAt, DeletedAt, Model, PrimaryKey, UpdatedAt } from "sequelize-typescript";
 
 export class GeneralModel<T> extends Model<T> {
-
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id?: number;
 
   @Column({ field: "created_at", allowNull: false })
   @CreatedAt
